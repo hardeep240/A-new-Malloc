@@ -1,0 +1,12 @@
+The aim of this project is to create a new improved version of malloc wherein while freeing, the user does not need to always pass the pointer to the start of a chunk of object memory in order to free it. They can pass a pointer to any position of the chunk - our function detects which object it belongs to, and accordingly frees the entire chunk.
+
+Two linked lists are vital to our implementation - Free List and Alloc List
+Free list stores information about chunks of free memory.
+Alloc List stores information about each object chunk
+
+We start with mmap() function that allocates a large chunk (say 32 MB) of memory and returns a pointer to its start. This large chunk acts as our workspace. We allocate approximately the first 1MB of the workspace for Free List and the exact same memory for our Alloc List. The rest of our memory is for our operations.
+
+Allocation : 
+Find a free chunk of memory from Free List that has size at least equal to user’s requirement. Return the start address of this chunk.
+Remove this chunk of memory from the Free List.
+
